@@ -1,1 +1,1 @@
-
+Deployed on https://firm-characteristics-of-china-listed-companies.streamlit.app/
