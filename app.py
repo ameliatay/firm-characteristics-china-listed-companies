@@ -50,7 +50,7 @@ def img_to_bytes(img_path):
 def cs_sidebar():
 
     st.sidebar.markdown('''[<img src='data:image/png;base64,{}' class='img-fluid' width=32 height=32>](https://streamlit.io/)'''.format(img_to_bytes("logomark_website.png")), unsafe_allow_html=True)
-    st.sidebar.header('Firm characteristics')
+    st.sidebar.header('Firm characteristics of china-listed companies')
 
     st.sidebar.markdown('''
 <small>Summary of the [docs](https://docs.streamlit.io/), as of [Streamlit v1.25.0](https://www.streamlit.io/).</small>
