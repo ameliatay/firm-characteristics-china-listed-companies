@@ -10,6 +10,7 @@ type_rep = 'A'
 start_year = 2000
 end_year = 2023
 industries = []
+ownership = []
 
 def time_series(df):
     filters()
@@ -44,15 +45,17 @@ def generate_charts(df):
     global start_year
     global end_year
     global industries
+    global ownership
 
     if len(industries) == 0: industries = df['Indnme_En'].unique().tolist()
-    if len(companies) == 0: companies = df[df['Indnme_En'].isin(industries)]['final_company_name'].unique().tolist()[:10]
+    if len(ownership) == 0: ownership = df['ownership'].unique().tolist()
+    if len(companies) == 0: companies = df[(df['Indnme_En'].isin(industries)) & (df['ownership'].isin(ownership))]['final_company_name'].unique().tolist()[:10]
 
     return [
         # 1
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -63,7 +66,7 @@ def generate_charts(df):
         # 2
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -74,7 +77,7 @@ def generate_charts(df):
         # 3
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -85,7 +88,7 @@ def generate_charts(df):
         # 4
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -96,7 +99,7 @@ def generate_charts(df):
         # 5
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -107,7 +110,7 @@ def generate_charts(df):
         # 6
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -118,7 +121,7 @@ def generate_charts(df):
         # 7
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -129,7 +132,7 @@ def generate_charts(df):
         # 8
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -140,7 +143,7 @@ def generate_charts(df):
         # 9
         plot_time_series(
             df,
-            'Shen Zhen', 
+            ownership,
             start_year, 
             end_year, 
             companies, 
@@ -157,8 +160,9 @@ def filters():
     global start_year
     global end_year
     global industries
+    global ownership
 
-    ticker_selection, type_rep_selection, start_year_selection, end_year_selection, industry = st.columns(5)
+    ticker_selection, type_rep_selection, start_year_selection, end_year_selection, industry, ownership_selected = st.columns(6)
 
     with ticker_selection.container():
         tickers = get_shenzhen_tickers()
@@ -168,9 +172,9 @@ def filters():
         companies = selected_stock
 
     with type_rep_selection.container():
-        type_rep_selected = st.selectbox("Select Type Representation", options=['A', 'B'], key="type_rep", help="Search the type representation you want to use")
+        type_rep_selected = st.selectbox("Select Type Representation", options=['Consolidated Statements', 'Parent Statements'], key="type_rep", help="Search the type representation you want to use")
 
-        type_rep = type_rep_selected
+        type_rep = 'A' if type_rep_selected == 'Consolidated Statements' else 'B'
 
     with start_year_selection.container():
         periods = [x for x in range(datetime.datetime.now().year, datetime.datetime.now().year - 50, -1)]
@@ -192,3 +196,10 @@ def filters():
         industry = st.multiselect('Select Industry', options=industries_list, key='industry_time', help='Select industry(s) of choice')
 
         industries = industry
+
+    with ownership_selected.container():
+        ownership_list = get_shanghai_data()['ownership'].unique().tolist()
+        
+        select_ownership = st.multiselect('Select Ownership Typ', options=ownership_list, key='sse_ownership_time', help='Select ownership type(s) of choice')
+
+        ownership = select_ownership

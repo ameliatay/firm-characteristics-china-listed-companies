@@ -10,6 +10,7 @@ metric_two = 'No selection'
 type_rep = 'A'
 year = 2015
 industries = []
+ownership = []
 result_df = []
 
 def scatterplot(df):
@@ -47,10 +48,12 @@ def generate_chart(df):
     global type_rep
     global year
     global industries
+    global ownership
     global result_df
 
     if len(industries) == 0: industries = df['Indnme_En'].unique().tolist()
     if len(companies) == 0: companies = df['final_company_name'].unique().tolist()
+    if len(ownership) == 0: ownership = df['ownership'].unique().tolist()
     if metric_one in read_metrics_rv()['code'].tolist() and metric_two in read_metrics_rv()['code'].tolist(): type_rep = None
 
     if metric_two == 'No selection':
@@ -61,9 +64,11 @@ def generate_chart(df):
             companies, 
             metric_one, 
             type_rep, 
-            industries
+            industries,
+            ownership
         )
     else:
+        print('im here')
         fig, df = scatterplot_two_metrics(
             df, 
             'Shanghai',
@@ -72,7 +77,8 @@ def generate_chart(df):
             metric_two, 
             type_rep, 
             companies, 
-            industries
+            industries,
+            ownership
         )
     result_df = df
     return fig    
@@ -85,8 +91,9 @@ def filters():
     global type_rep
     global year
     global industries
+    global ownership
 
-    companies, metrics, year_filter, industry = st.columns([1,2,1,1])
+    companies, metrics, year_filter, industry, ownership_selected = st.columns([1,2,1,1,1])
 
     with companies.container():
         tickers = get_shanghai_tickers()
@@ -114,9 +121,8 @@ def filters():
             else: metric_two = 'No selection'
 
         if metric_one in read_metrics()['code'].tolist() or metric_two in read_metrics()['code'].tolist():
-            selected_type_rep = st.selectbox("Select Type Representation", options=['A', 'B'], key="type_rep_one", help="Selected type representation will be displayed for all applicable and chosen metrics")
-            type_rep = selected_type_rep
-    
+            selected_type_rep = st.selectbox("Select Type Representation", options=['Consolidated Statements', 'Parent Statements'], key="type_rep_one", help="Selected type representation will be displayed for all applicable and chosen metrics")
+            type_rep = 'A' if selected_type_rep == 'Consolidated Statements' else 'B'
 
     with year_filter.container():
         periods = [x for x in range(datetime.datetime.now().year, datetime.datetime.now().year - 50, -1)]
@@ -129,6 +135,12 @@ def filters():
         
         industry = st.multiselect('Select Industry', options=industries_list, key='industry', help='Select industry(s) of choice')
         industries = industry
+
+    with ownership_selected.container():
+        ownership_list = get_shanghai_data()['ownership'].unique().tolist()
+        
+        selected_owership = st.multiselect("Select Ownership Type", options=ownership_list, key="ownership_shanghai", help=f"Select the ownership type you wish to view")
+        ownership = selected_owership
 
 def statistics():
     result_df, metric_one, metric_two = st.session_state.sse_scatter_stats
