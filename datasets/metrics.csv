@@ -1,8 +1,8 @@
-code,name
-F050201B,Return On Asset
-F051501B,Operating Margin
-F050501B,Return On Equity
-F011701A,Debt To Equity Ratio
-F010201A,Quick Ratio
-F010101A,Current Ratio
-F090101B,EPS
+code,name,description
+F050201B,Return On Asset,"The term return on assets (ROA) refers to a financial ratio that indicates how profitable a company is in relation to its total assets. Corporate management, analysts, and investors can use ROA to determine how efficiently a company uses its assets to generate a profit."
+F051501B,Operating Margin,"The operating margin measures how much profit a company makes on a dollar of sales after paying for variable costs of production, such as wages and raw materials, but before paying interest or tax. It is calculated by dividing a company’s operating income by its net sales. Higher ratios are generally better, illustrating the company is efficient in its operations and is good at turning sales into profits."
+F050501B,Return On Equity,"Return on equity (ROE) is a measure of financial performance calculated by dividing net income by shareholders' equity. Because shareholders' equity is equal to a company’s assets minus its debt, ROE is considered the return on net assets."
+F011701A,Debt To Equity Ratio,"Debt-to-equity (D/E) ratio is used to evaluate a company’s financial leverage and is calculated by dividing a company’s total liabilities by its shareholder equity. D/E ratio is an important metric in corporate finance. It is a measure of the degree to which a company is financing its operations with debt rather than its own resources. Debt-to-equity ratio is a particular type of gearing ratio."
+F010201A,Quick Ratio,"The quick ratio is an indicator of a company’s short-term liquidity position and measures a company’s ability to meet its short-term obligations with its most liquid assets."
+F010101A,Current Ratio,"The current ratio is a liquidity ratio that measures a company’s ability to pay short-term obligations or those due within one year. It tells investors and analysts how a company can maximize the current assets on its balance sheet to satisfy its current debt and other payables."
+F090101B,EPS,"Earnings per share (EPS) is calculated as a company's profit divided by the outstanding shares of its common stock. The resulting number serves as an indicator of a company's profitability. It is common for a company to report EPS that is adjusted for extraordinary items and potential share dilution."

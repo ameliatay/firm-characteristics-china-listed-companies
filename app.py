@@ -55,7 +55,7 @@ def cs_sidebar():
         
     st.sidebar.markdown('''<br><br><br><br>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small>This dashboard was created as part of Singapore Management University's Capital Markets in China course to aid interested parties better analyse China-listed stocks on the Shenzhen and Shanghai exchange in a more user-intuitive manner.</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small>This dashboard was created as part of Singapore Management University's Capital Markets in China (AY2023-2024 Semester 1) course to aid interested parties better analyse China-listed stocks on the Shenzhen and Shanghai exchange in a more user-intuitive manner.</small>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<br>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<small style="font-weight: bold;">Professor Wang Jiwei</small><br><small style="font-weight: bold;">Section G1 Team 5</small><br><small>Chen Jian Yu | Parmesh Harvadan Mehta | Natalie Chua | Amelia Tay | Lee Ling Hui | Isaac Tan</small>''', unsafe_allow_html=True)
 

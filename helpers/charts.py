@@ -54,7 +54,7 @@ def scatterplot_one_metric(raw_df, index, year, companies, metric_1, type_rep, i
 
     fig.add_annotation(
         x=len(df['Stkcd'].unique()) * 1.05, y=avg_metric_1,
-        text=f'Avg: {avg_metric_1.round(4)}',
+        text=f'Avg: {round(avg_metric_1,4)}',
         showarrow=True,
         arrowhead=2,
         arrowcolor="red",
@@ -65,11 +65,10 @@ def scatterplot_one_metric(raw_df, index, year, companies, metric_1, type_rep, i
     )
 
     # Move legend to the bottom
-    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.4, xanchor="left", x=0))
-    fig.update_layout(legend_title_text="Industry")
+    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.4 if len(df['Indnme_En'].unique()) < 30 else -10.0, xanchor="left", x=0))
 
-    fig.update_layout(showlegend=len(industries) < 20)
-
+    fig.update_layout(showlegend=True, legend_title_text="Industry")
+    fig.update_layout(height=1000)
     # Show the plot
     return fig, df
 
@@ -93,7 +92,7 @@ def scatterplot_two_metrics(raw_df, index, year, metric_1, metric_2, type_rep, c
     fig.update_traces(textposition="top center", marker=dict(size=4 if len(companies) > 30 else 10, opacity=0.8))
 
     # Add labels to the axes
-    fig.update_xaxes(title_text=metric_one_en)
+    fig.update_xaxes(title_text=metric_one_en, side='top')
     fig.update_yaxes(title_text=metric_two_en)
 
     # Add market average lines
@@ -109,7 +108,7 @@ def scatterplot_two_metrics(raw_df, index, year, metric_1, metric_2, type_rep, c
 
     fig.add_annotation(
         x=avg_metric_1, y=df[metric_2].max(),
-        text=f'{metric_one_en} Avg: {avg_metric_1.round(4)}',
+        text=f'{metric_one_en} Avg: {round(avg_metric_1, 4)}',
         showarrow=True,
         arrowhead=2,
         arrowcolor="red",
@@ -121,7 +120,7 @@ def scatterplot_two_metrics(raw_df, index, year, metric_1, metric_2, type_rep, c
 
     fig.add_annotation(
         x=df[metric_1].max(), y=avg_metric_2,
-        text=f'{metric_two_en} Avg: {avg_metric_2.round(4)}',
+        text=f'{metric_two_en} Avg: {round(avg_metric_2, 4)}',
         showarrow=True,
         arrowhead=2,
         arrowcolor="blue",
@@ -132,9 +131,12 @@ def scatterplot_two_metrics(raw_df, index, year, metric_1, metric_2, type_rep, c
     )
 
     # Move legend to the bottom
-    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="left", x=0))
+    fig.update_layout(legend=dict(orientation="h", yanchor="bottom", y=-0.4 if len(df['Indnme_En'].unique()) < 30 else -3.0, xanchor="left", x=0))
 
-    fig.update_layout(showlegend=len(industries) < 20)
+    fig.update_layout(showlegend=True, legend_title_text="Industry")
+
+    fig.update_layout(margin=dict(t=150))
+    fig.update_layout(height=1000)
 
     # Show the plot
     return fig, df

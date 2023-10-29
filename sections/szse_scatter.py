@@ -147,12 +147,12 @@ def statistics():
     st.metric('Number of Tickers', len(result_df))
 
     metric_one_en = get_metrics().loc[get_metrics()['code'] == metric_one, 'name'].values[0]
-    st.metric(f'Average {metric_one_en}', result_df[metric_one].mean().round(4))
-    st.metric(f'Minimum {metric_one_en}', result_df[metric_one].min().round(4))
-    st.metric(f'Maximum {metric_one_en}', result_df[metric_one].max().round(4))
+    st.metric(f'Average {metric_one_en}', round(result_df[metric_one].mean(),4))
+    st.metric(f'Minimum {metric_one_en}', round(result_df[metric_one].min(),4))
+    st.metric(f'Maximum {metric_one_en}', round(result_df[metric_one].max(),4))
 
     if metric_two != 'No selection':
         metric_two_en = get_metrics().loc[get_metrics()['code'] == metric_two, 'name'].values[0]
-        st.metric(f'Average {metric_two_en}', result_df[metric_two].mean().round(4))
-        st.metric(f'Minimum {metric_two_en}', result_df[metric_two].min().round(4))
-        st.metric(f'Maximum {metric_two_en}', result_df[metric_two].max().round(4))
+        st.metric(f'Average {metric_two_en}', round(result_df[metric_two].mean(),4))
+        st.metric(f'Minimum {metric_two_en}', round(result_df[metric_two].min(),4))
+        st.metric(f'Maximum {metric_two_en}', round(result_df[metric_two].max(),4))

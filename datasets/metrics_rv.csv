@@ -1,3 +1,3 @@
-code,name
-F100401A,Price-To-Book Ratio
-F100101B,Price To Earnings Ratio
+code,name,description
+F100401A,Price-To-Book Ratio,"The Price to Book (P/B Ratio) measures the market capitalization of a company relative to its book value of equity. Widely used among the value investing crowd, the P/B ratio can be used to identify undervalued stocks in the market."
+F100101B,Price To Earnings Ratio,"The price-to-earnings ratio is the ratio for valuing a company that measures its current share price relative to its earnings per share (EPS). The price-to-earnings ratio is also sometimes known as the price multiple or the earnings multiple."
