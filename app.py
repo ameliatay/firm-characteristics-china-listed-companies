@@ -1,22 +1,15 @@
 import streamlit as st
 from pathlib import Path
 import base64
-from analysis.stock_analysis import process_csv
-from sections.key_insights import key_insights
-from sections.shanghai_overview import shanghai_overview
-from sections.shanghai_stocks import shanghai_stocks
-from sections.shenzhen_stocks import shenzhen_stocks
-from sections.shenzhen_overview import shenzhen_overview
 from streamlit_option_menu import option_menu
+from sections.szse import shenzhen
+from sections.sse import shanghai
+from sections.key_definitions import key_definitions
 
 # Initial page config
 
 if 'selected' not in st.session_state:
-    st.session_state['selected'] = "Key Insight"
-
-if 'data_processed' not in st.session_state or not st.session_state['data_processed']:
-    st.session_state['data_processed'] = False
-    process_csv()
+    st.session_state['selected'] = "Shenzhen Exchange"
 
 
 st.set_page_config(
@@ -40,7 +33,7 @@ st.markdown(
     """
     <style>
         section[data-testid="stSidebar"] {
-            width: 360px !important; 
+            width: 380px !important; 
         }
         .main .block-container {
             padding-top: 30px !important;
@@ -57,11 +50,14 @@ def cs_sidebar():
     st.sidebar.header('Firm characteristics of china-listed companies')
 
     with st.sidebar:
-        st.session_state['selected'] = option_menu(None, ["Key Insights", '---', 'Shenzhen Exchange Overview', 'Shenzhen Stocks', '---', 'Shanghai Exchange Overview', 'Shanghai Stocks', '---'], 
-            icons=['key-fill', None, 'bar-chart-line-fill', 'building-fill-up', None, 'bar-chart-line-fill', 'building-fill-up'], menu_icon="cast")
+        st.session_state['selected'] = option_menu(None, ['Shenzhen Exchange', 'Shanghai Exchange', 'Key Definitions'], 
+            icons=['bar-chart-line-fill', 'bar-chart-line-fill', 'key-fill'], menu_icon="cast")
         
+    st.sidebar.markdown('''<br><br><br><br>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small>Chen Jian Yu | Parmesh Harvadan Mehta | Natalie Chua | Amelia Tay | Lee Ling Hui | Isaac Tan</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small>This dashboard was created as part of Singapore Management University's Capital Markets in China course to aid interested parties better analyse China-listed stocks on the Shenzhen and Shanghai exchange in a more user-intuitive manner.</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<br>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small style="font-weight: bold;">Professor Wang Jiwei</small><br><small style="font-weight: bold;">Section G1 Team 5</small><br><small>Chen Jian Yu | Parmesh Harvadan Mehta | Natalie Chua | Amelia Tay | Lee Ling Hui | Isaac Tan</small>''', unsafe_allow_html=True)
 
     return None
 
@@ -69,11 +65,10 @@ def cs_sidebar():
 
 def cs_body():
     st.title(st.session_state['selected'])
-    if st.session_state['selected'] == "Shenzhen Exchange Overview": shenzhen_overview()
-    elif st.session_state['selected'] == "Shanghai Exchange Overview": shanghai_overview()
-    elif st.session_state['selected'] == "Shenzhen Stocks": shenzhen_stocks()
-    elif st.session_state['selected'] == "Shanghai Stocks": shanghai_stocks()
-    else: key_insights()
+    if st.session_state['selected'] == "Shanghai Exchange": shanghai()
+    elif st.session_state['selected'] == "Key Definitions": key_definitions()
+    else: shenzhen()
+
     return None
 
 if __name__ == '__main__':
