@@ -46,7 +46,7 @@ st.markdown(
 # sidebar
 
 def cs_sidebar():
-    st.sidebar.markdown('''[<img src='data:image/png;base64,{}' class='img-fluid' height=80>](https://streamlit.io/)'''.format(img_to_bytes("assets/china-flag.png")), unsafe_allow_html=True)
+    st.sidebar.markdown('''[<img src='data:image/png;base64,{}' class='img-fluid' height=80>](https://github.com/ameliatay)'''.format(img_to_bytes("assets/china-flag.png")), unsafe_allow_html=True)
     st.sidebar.header('Firm characteristics of china-listed companies')
 
     with st.sidebar:
