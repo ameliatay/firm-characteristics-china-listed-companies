@@ -57,7 +57,7 @@ def cs_sidebar():
     st.sidebar.markdown('''<hr>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<small>This dashboard was created as part of Singapore Management University's Capital Markets in China (AY2023-2024 Semester 1) course to aid interested parties better analyse China-listed stocks on the Shenzhen and Shanghai exchange in a more user-intuitive manner.</small>''', unsafe_allow_html=True)
     st.sidebar.markdown('''<br>''', unsafe_allow_html=True)
-    st.sidebar.markdown('''<small style="font-weight: bold;">Professor Wang Jiwei</small><br><small style="font-weight: bold;">Section G1 Team 5</small><br><small>Chen Jian Yu | Parmesh Harvadan Mehta | Natalie Chua | Amelia Tay | Lee Ling Hui | Isaac Tan</small>''', unsafe_allow_html=True)
+    st.sidebar.markdown('''<small style="font-weight: bold;">Professor Wang Jiwei</small><br><small style="font-weight: bold;">Section G1 Team 5</small><br><small>[Chen Jian Yu](https://www.linkedin.com/in/chen-jian-yu/) | [Parmesh Harvadan Mehta](https://www.linkedin.com/in/parmesh-mehta/) | [Natalie Chua](https://www.linkedin.com/in/nataliechua2000/) | [Amelia Tay](https://www.linkedin.com/in/amelia-tay-li-jia) | [Lee Ling Hui](https://www.linkedin.com/in/leelinghui/) | [Isaac Tan](https://www.linkedin.com/in/isaac-tan-e-9605171ab/)</small>''', unsafe_allow_html=True)
 
     return None
 

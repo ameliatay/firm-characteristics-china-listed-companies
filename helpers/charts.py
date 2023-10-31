@@ -140,3 +140,27 @@ def scatterplot_two_metrics(raw_df, index, year, metric_1, metric_2, type_rep, c
 
     # Show the plot
     return fig, df
+
+def get_top_stocks(raw_df, number_to_display, metric, type_rep, year, industries, ownership):
+    # Filter data
+    if type_rep:
+        df = raw_df[(raw_df['Accper_year'] == year) & (raw_df['Typrep'] == type_rep) & (raw_df['Indnme_En'].isin(industries)) & (raw_df['ownership'].isin(ownership))]
+    else:
+        df = raw_df[(raw_df['Accper_year'] == year) & (raw_df['Indnme_En'].isin(industries)) & (raw_df['ownership'].isin(ownership))]
+
+    result_df = df.sort_values(by=metric, ascending=False).head(number_to_display).reset_index(drop=True)[['final_company_name', 'Indnme_En', 'ownership', 'F050201B', 'F051501B', 'F050501B', 'F010201A', 'F010101A', 'F011701A', 'F090101B', 'F100401A', 'F100101B']]
+
+    return result_df.rename(columns={
+        'final_company_name': 'Company',
+        'Indnme_En': 'Industry',
+        'ownership': 'Ownership Type',
+        'F050201B': get_metrics_dict()['F050201B'],
+        'F051501B': get_metrics_dict()['F051501B'],
+        'F050501B': get_metrics_dict()['F050501B'],
+        'F010201A': get_metrics_dict()['F010201A'],
+        'F010101A': get_metrics_dict()['F010101A'],
+        'F011701A': get_metrics_dict()['F011701A'],
+        'F090101B': get_metrics_dict()['F090101B'],
+        'F100401A': get_metrics_dict()['F100401A'],
+        'F100101B': get_metrics_dict()['F100101B'],
+    })

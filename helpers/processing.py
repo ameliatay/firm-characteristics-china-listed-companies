@@ -16,6 +16,10 @@ def get_metrics():
   return pd.concat([df1, df2])
 
 @st.cache_data
+def get_metrics_dict():
+  return get_metrics().set_index('code')['name'].to_dict()
+
+@st.cache_data
 def get_shenzhen_data():
   raw_df = pd.read_csv("datasets/shenzhen.csv")
   return raw_df
